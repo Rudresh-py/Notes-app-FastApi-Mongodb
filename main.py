@@ -8,7 +8,8 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
-conn =MongoClient("mongodb+srv://rudreshcg:Softsuave123@pythonmongo.bo5uu2w.mongodb.net/notes")
+conn = MongoClient("mongodb+srv://rudreshcg:Softsuave123@pythonmongo.bo5uu2w.mongodb.net/notes")
+
 
 @app.get("/", response_class=HTMLResponse)
 async def read_item(request: Request):
@@ -17,7 +18,7 @@ async def read_item(request: Request):
     for doc in docs:
         newDocs.append({
             "id": doc["_id"],
-            "note": doc["notes"]
+            "note": doc["note"]
         })
         print(doc)
     print(docs)
