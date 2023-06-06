@@ -13,7 +13,12 @@ conn =MongoClient("mongodb+srv://rudreshcg:Softsuave123@pythonmongo.bo5uu2w.mong
 @app.get("/", response_class=HTMLResponse)
 async def read_item(request: Request):
     docs = conn.notes.notes.find({})
+    newDocs = []
     for doc in docs:
+        newDocs.append({
+            "id": doc["_id"],
+            "note": doc["notes"]
+        })
         print(doc)
     print(docs)
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse("index.html", {"request": request, "newDocs": newDocs})
