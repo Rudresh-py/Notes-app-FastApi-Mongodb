@@ -1,6 +1,3 @@
-from fastapi import APIRouter
-from models.note import Note
-
 
 def note_entity(item) -> dict:
     return {
